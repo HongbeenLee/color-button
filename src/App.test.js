@@ -43,7 +43,9 @@ test('when checkbox unchecked, button should be disabled.', () => {
   const button = screen.getByRole('button', {
     name: /Change to/
   });
-  const checkbox = screen.getByRole('checkbox');
+  const checkbox = screen.getByRole('checkbox', {
+    name: "Disabled button"
+  });
 
   // when checkbox has checked, the button is disabled.
   fireEvent.click(checkbox);
