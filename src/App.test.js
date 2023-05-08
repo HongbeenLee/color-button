@@ -56,7 +56,7 @@ test('when checkbox unchecked, button should be disabled.', () => {
   expect(button).toBeEnabled();
 })
 
-test('버튼이 비활성회되면, disabled 색상을 보여준다.', () => {
+test('버튼이 비활성회되면, disabled 색상을 보여주고 활성화되면 기존 색으로 돌아온다.', () => {
   render(<App />);
 
   const button = screen.getByRole('button', {
