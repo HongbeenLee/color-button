@@ -55,3 +55,35 @@ test('when checkbox unchecked, button should be disabled.', () => {
   fireEvent.click(checkbox);
   expect(button).toBeEnabled();
 })
+
+test('버튼이 비활성회되면, disabled 색상을 보여준다.', () => {
+  render(<App />);
+
+  const button = screen.getByRole('button', {
+    name: /Change to/
+  });
+  const checkbox = screen.getByRole('checkbox', {
+    name: "Disabled button"
+  });
+
+  // 버튼 비활성화 -> 회색 확인 -> 활성화 -> 기존색으로 돌아오는지 확인
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle(`
+  background-color: gray;
+  `);
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle(`
+  background-color: red;
+  `);
+
+  // 버튼색 변경 -> 비활성화 -> 회색확인 -> 활성화 -> 기존색인지 확인
+  fireEvent.click(button);
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle(`
+  background-color: gray;
+  `);
+  fireEvent.click(checkbox);
+  expect(button).toHaveStyle(`
+  background-color: blue;
+  `);
+})
